@@ -12,6 +12,9 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                ptsans: ['"PT Sans"'],
+                jsone: ['"Julius Sans One"'],
+
             },
         },
     },
