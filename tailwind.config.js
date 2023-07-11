@@ -39,8 +39,15 @@ module.exports = {
                 jsone: ['"Julius Sans One"'],
 
             },
+            fontSize: {
+                xxs: ['0.625rem', { lineHeight: '1rem'}],
+            }
         },
     },
 
-    plugins: [require('@tailwindcss/forms')],
+    plugins: [
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/line-clamp'),
+    ],
+
 };
