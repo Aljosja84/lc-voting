@@ -30,8 +30,7 @@ module.exports = {
                 175: '43.75rem',
             },
             maxWidth: {
-              custom: '62.5rem',
-              'jelle': '80rem',
+              custom: '68.5rem',
             },
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],

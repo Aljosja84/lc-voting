@@ -133,7 +133,7 @@
                 </div>
 
                 <div class="mt-8">
-                    <button class="w-20 bg-blue border border-gray-200 hover:border-gray-400 font-bold text-xxs uppercase
+                    <button class="w-20 bg-blue border text-white border-gray-200 hover:border-gray-400 font-bold text-xxs uppercase
                     rounded-xl transition duration-200 ease-in px-4 py-3">Voted</button>
                 </div>
             </div>
