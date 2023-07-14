@@ -91,7 +91,7 @@
                                 <!-- end icon -->
                                 <span class="ml-2">Attach</span>
                             </button>
-                            <button type="submit" class="font-semibold bg-blue border border-blue text-white hover:border-gray-400 transition duration-200 ease-in text-xs w-1/2 h-11 rounded-xl">Submit</button>
+                            <button type="submit" class="font-semibold bg-blue border border-blue text-white hover:bg-blue-hover transition duration-200 ease-in text-xs w-1/2 h-11 rounded-xl">Submit</button>
                         </div>
                     </form>
                 </div>
