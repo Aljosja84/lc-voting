@@ -21,9 +21,9 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-ptsans bg-gray-background text-gray-900 text-sm">
-        <header class="flex items-center justify-between px-8 py-4">
+        <header class="flex flex-col md:flex-row items-center justify-between px-8 py-4">
             <a href="#"><img src="{{ asset('/img/logo.svg') }}" alt="logo"></a>
-            <div class="flex items-center">
+            <div class="flex items-center mt-2 md:mt-0">
                 @if (Route::has('login'))
                     <div class="px-6 py-4">
                         @auth
@@ -53,7 +53,7 @@
 
         <main class="container mx-auto max-w-custom flex">
             <div class="w-70 mr-5">
-                <div class="bg-white border-2 border-blue rounded-xl mt-16"
+                <div class="bg-white sticky top-8 border-2 border-blue rounded-xl mt-16"
                      style="
                     border-image-source: linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
                     border-image-slice: 1;

@@ -47,7 +47,7 @@
                         <img src="https://source.unsplash.com/200x200/?face&crop=face&v=1" alt="go to profile" class="w-14 h-14 rounded-xl">
                     </a>
                 </div>
-                <div class="w-full mx-4">
+                <div class="w-full flex flex-col justify-between mx-4">
                     <h4 class="text-xl font-semibold">
                         <a href="#" class="hover:underline">Just a random idea that popped up</a>
                     </h4>
@@ -66,12 +66,12 @@
                             <div class="text-gray-900">3 comments</div>
                         </div>
 
-                        <div class="relative flex items-center space-x-2">
+                        <div x-data="{ isOpen: false }" class="relative flex items-center space-x-2">
                             <div class="bg-gray-200 text-xxs font-semibold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">open</div>
-                            <button class="relative bg-gray-100 hover:bg-gray-200 rounded-full border h-7 transition duration-200 ease-in py-2 px-3">
+                            <button @click="isOpen = !isOpen" class="relative bg-gray-100 hover:bg-gray-200 rounded-full border h-7 transition duration-200 ease-in py-2 px-3">
                                 <svg fill="currentColor" width="24" height="6"><path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)"></svg>
                             </button>
-                            <ul class="absolute top-4 w-44 font-semibold bg-white shadow-lg rounded-xl py-3 text-left" style="left:130px">
+                            <ul x-cloak x-show="isOpen" x-transition.origin.top.left.duration.300ms @click.away="isOpen = false" class="absolute top-4 w-44 font-semibold bg-white shadow-lg rounded-xl py-3 text-left" style="left:130px">
                                 <li><a href="#" class="hover:bg-gray-100 px-5 py-2 block">Delete Post</a></li>
                                 <li><a href="#" class="hover:bg-gray-100 px-5 py-2 block">Mark as spam</a></li>
                             </ul>
