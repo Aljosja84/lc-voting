@@ -16,9 +16,11 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <livewire:styles />
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+
     </head>
     <body class="font-ptsans bg-gray-background text-gray-900 text-sm">
         <header class="flex flex-col md:flex-row items-center justify-between px-8 py-4">
@@ -119,5 +121,6 @@
 
             </div>
         </main>
+        <livewire:scripts />
     </body>
 </html>
