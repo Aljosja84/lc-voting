@@ -18,19 +18,18 @@
             </div>
             <div class="w-full mx-4">
                 <h4 class="text-xl font-semibold">
-                    <a href="#" class="hover:underline">Just a random idea that popped up</a>
+                    <a href="#" class="hover:underline">{{ $idea->title }}</a>
                 </h4>
                 <div class="text-gray-600 mt-3">
-                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-                    Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text.
+                    {{ $idea->description }}
                 </div>
 
                 <!-- idea details -->
                 <div class="flex items-center justify-between mt-6">
                     <div class="flex items-center text-xs text-gray-400 space-x-2">
-                        <div class="font-bold text-gray-900">Aljosja84</div>
+                        <div class="font-bold text-gray-900">{{ $idea->user->name }}</div>
                         <div>&bull;</div>
-                        <div>10 hours ago</div>
+                        <div>{{ $idea->created_at->diffForHumans() }}</div>
                         <div>&bull;</div>
                         <div>Category Two</div>
                         <div>&bull;</div>
