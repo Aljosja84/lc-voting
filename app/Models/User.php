@@ -49,4 +49,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Idea::class);
     }
+
+    public function getAvatar()
+    {
+        // random number between 1 and 40
+        $randInt = rand(1, 40);
+
+        // return url
+        return "https://source.unsplash.com/200x200/?face&crop=face&v=" . $randInt;
+    }
 }
