@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Category;
 use App\Models\Idea;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -14,13 +15,18 @@ class ShowIdeas extends TestCase
     /** @test */
     public function list_of_ideas_shows_on_main_page()
     {
+        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+        $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
+
         $firstIdea = Idea::factory()->create([
             'title' => 'first idea title',
+            'category_id' => $categoryOne->id,
             'description' => 'first idea description'
         ]);
 
         $secondIdea = Idea::factory()->create([
             'title' => 'second idea title',
+            'category_id' => $categoryTwo->id,
             'description' => 'second idea description'
         ]);
 
@@ -29,6 +35,8 @@ class ShowIdeas extends TestCase
         $response->assertSuccessful();
         $response->assertSee($firstIdea->title);
         $response->assertSee($secondIdea->title);
+        $response->assertSee($categoryOne->name);
+        $response->assertSee($categoryTwo->name);
     }
 
     /** @test */
