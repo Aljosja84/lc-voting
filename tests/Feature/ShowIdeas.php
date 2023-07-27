@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Category;
 use App\Models\Idea;
+use App\Models\Status;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -18,23 +19,33 @@ class ShowIdeas extends TestCase
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
         $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
 
+        $statusOne = Status::factory()->create(['name' => 'Open']);
+        $statusTwo = Status::factory()->create(['name' => 'Closed']);
+
         $firstIdea = Idea::factory()->create([
             'title' => 'first idea title',
             'category_id' => $categoryOne->id,
+            'status_id' => $statusOne->id,
             'description' => 'first idea description'
         ]);
 
         $secondIdea = Idea::factory()->create([
             'title' => 'second idea title',
             'category_id' => $categoryTwo->id,
+            'status_id' => $statusTwo->id,
             'description' => 'second idea description'
         ]);
 
         $response = $this->get(route('idea.index'));
 
         $response->assertSuccessful();
+        // check if we see titles
         $response->assertSee($firstIdea->title);
         $response->assertSee($secondIdea->title);
+        // check if we see statuses
+        $response->assertSee($statusOne->name);
+        $response->assertSee($statusTwo->name);
+        // check if we see categories
         $response->assertSee($categoryOne->name);
         $response->assertSee($categoryTwo->name);
     }

@@ -50,7 +50,10 @@ class User extends Authenticatable
         return $this->hasMany(Idea::class);
     }
 
-    public function getAvatar()
+    /**
+     * @return string
+     */
+    public static function getAvatar()
     {
         // random number between 1 and 40
         $randInt = rand(1, 40);

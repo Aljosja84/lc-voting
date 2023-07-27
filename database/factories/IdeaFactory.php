@@ -18,6 +18,7 @@ class IdeaFactory extends Factory
         return [
             'user_id' => User::factory(),
             'category_id' => $this->faker->numberBetween(1,4),
+            'status_id' => $this->faker->numberBetween(1,5),
             'title' => $this->faker->words(5, true),
             'description' => $this->faker->paragraph(5),
         ];
