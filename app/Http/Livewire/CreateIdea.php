@@ -16,7 +16,13 @@ class CreateIdea extends Component
 
     // everyone knows the rules Franky
     protected $rules = [
-        'title' => 'required|min:5',
+        'title' => 'required|min:4',
+        'category' => 'required|exists:App\Models\Category,id',
+        'description' => 'required|min:5'
+    ];
+
+    protected $messages = [
+        'title' => 'je bent iets vergeten'
     ];
 
     /**
