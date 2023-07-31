@@ -51,6 +51,14 @@ class User extends Authenticatable
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function votes()
+    {
+        return $this->belongsToMany(Idea::class, 'votes');
+    }
+
+    /**
      * @return string
      */
     public static function getAvatar()
