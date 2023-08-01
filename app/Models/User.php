@@ -59,6 +59,17 @@ class User extends Authenticatable
     }
 
     /**
+     * @param Idea $idea
+     */
+    public function vote(Idea $idea)
+    {
+        Vote::create([
+            'idea_id' => $idea->id,
+            'user_id' => $this->id
+        ]);
+    }
+
+    /**
      * @return string
      */
     public static function getAvatar()
