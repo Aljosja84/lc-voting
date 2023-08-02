@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Exceptions\DuplicateVoteException;
 use App\Models\Category;
 use App\Models\Idea;
 use App\Models\Status;
@@ -62,6 +63,29 @@ class IdeaTest extends TestCase
 
         $idea->vote($user);
         $this->assertTrue($idea->isVotedByUser($user));
+    }
+
+    /** @test */
+    public function voting_on_idea_already_voted_for_by_logged_in_user_throws_exception()
+    {
+        $user = User::factory()->create();
+
+        $category = Category::factory()->create(['name' => 'Category 1']);
+
+        $status = Status::factory()->create(['name' => 'Open']);
+
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'status_id' => $status->id,
+            'title' => 'My idea',
+            'description' => 'description'
+        ]);
+        $idea->vote($user);
+        // expect the exception
+        $this->expectException(DuplicateVoteException::class);
+        // try and vote again
+        $idea->vote($user);
     }
 
     /** @test */
