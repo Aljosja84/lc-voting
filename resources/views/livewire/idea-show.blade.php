@@ -142,9 +142,9 @@
             </div>
             <div>
                 @if($hasVoted)
-                    <button type="button" class="text-white font-semibold bg-blue border hover:border-gray-400 uppercase transition duration-200 ease-in w-32 text-xs h-11 rounded-xl">Voted</button>
+                    <button type="button" wire:click.prevent="vote" class="text-white font-semibold bg-blue border hover:border-gray-400 uppercase transition duration-200 ease-in w-32 text-xs h-11 rounded-xl">Voted</button>
                 @else
-                    <button type="button" class="font-semibold bg-gray-200 border hover:border-gray-400 uppercase transition duration-200 ease-in w-32 text-xs h-11 rounded-xl">Vote</button>
+                    <button type="button" wire:click.prevent="vote" class="font-semibold bg-gray-200 border hover:border-gray-400 uppercase transition duration-200 ease-in w-32 text-xs h-11 rounded-xl">Vote</button>
                 @endif
             </div>
         </div>
