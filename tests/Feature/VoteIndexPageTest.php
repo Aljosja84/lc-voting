@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Http\Livewire\IdeasIndex;
 use App\Models\Category;
 use App\Models\Idea;
 use App\Models\Status;
@@ -9,6 +10,7 @@ use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class VoteIndexPageTest extends TestCase
@@ -38,7 +40,7 @@ class VoteIndexPageTest extends TestCase
     }
 
     /** @test */
-    public function the_index_page_correctly_receiver_votes_count()
+    public function the_ideas_index_LW_component_correctly_receiver_votes_count()
     {
         $user = User::factory()->create();
         $anotherUser = User::factory()->create();
@@ -65,7 +67,9 @@ class VoteIndexPageTest extends TestCase
             'user_id' => $anotherUser->id
         ]);
 
-        $response = $this->get(route('idea.index', $idea));
-        $this->assertCount(2, $idea->votes);
+        Livewire::test(IdeasIndex::class)
+            ->assertViewHas('ideas', function($ideas) {
+                return $ideas->first()->votes_count == 2;
+            });
     }
 }
