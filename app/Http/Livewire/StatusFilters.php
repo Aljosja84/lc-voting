@@ -9,12 +9,8 @@ use Livewire\Component;
 
 class StatusFilters extends Component
 {
-    public $status = 'All';
+    public $status;
     public $statusCount;
-
-    protected $queryString = [
-        'status',
-    ];
 
     /**
      *
@@ -25,7 +21,6 @@ class StatusFilters extends Component
 
         if(Route::currentRouteName() === 'idea.show') {
             $this->status = null;
-            $this->queryString = [];
         }
     }
 
@@ -35,12 +30,14 @@ class StatusFilters extends Component
     public function setStatus($newStatus)
     {
         $this->status = $newStatus;
+        // communicate with upper component
+        $this->emit('queryStringUpdatedStatus', $this->status);
 
-        //if(app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName() === 'idea.show') {
+        if(app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName() === 'idea.show') {
             return redirect()->route('idea.index', [
                'status' => $this->status
             ]);
-        //}
+        }
     }
 
     /**

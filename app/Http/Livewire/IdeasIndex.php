@@ -12,6 +12,15 @@ class IdeasIndex extends Component
 {
     use WithPagination;
 
+    public $status = 'All';
+    public $category;
+
+    protected $queryString = [
+        'status',
+    ];
+
+    protected $listeners = ['queryStringUpdatedStatus'];
+
     public function render()
     {
         $statuses = Status::all()->pluck('id', 'name');
@@ -29,5 +38,6 @@ class IdeasIndex extends Component
                 ->orderBy('id', 'desc')
                 ->simplePaginate(Idea::PAGINATION_COUNT),
         ]);
+
     }
 }
