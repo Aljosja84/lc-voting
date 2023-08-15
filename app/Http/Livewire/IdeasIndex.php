@@ -42,6 +42,14 @@ class IdeasIndex extends Component
         $this->status = $newStatus;
     }
 
+    /**
+     *
+     */
+    public function updatingFilter()
+    {
+        $this->resetPage();
+    }
+
     public function updatedFilter()
     {
         if($this->filter === "My Ideas") {
