@@ -80,4 +80,11 @@ class User extends Authenticatable
         // return url
         return "https://source.unsplash.com/200x200/?face&crop=face&v=" . $randInt;
     }
+
+    public function isAdmin()
+    {
+        return in_array($this->email, [
+            'gabriel.gressie@gmail.com'
+        ]);
+    }
 }
