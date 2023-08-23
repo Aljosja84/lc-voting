@@ -1,4 +1,5 @@
-<div x-data="{isOpen: false}" class="relative">
+<div x-data="{isOpen: false}" x-init="window.livewire.on('statusChanged', () => {
+isOpen = false })" class="relative">
     <button @click="isOpen = !isOpen" type="button" class="flex items-center justify-center w-36 h-11 text-xs bg-gray-200 font-semibold rounded-xl border border-gray-200 hover:border-gray-400 transition duration-150 ease-in">
         <span>Set status</span>
         <!-- paperclip icon -->
@@ -9,35 +10,35 @@
         <!-- end icon -->
     </button>
     <div x-cloak x-show="isOpen" x-transition.origin.top.left.duration.300ms @click.away="isOpen = false" class="absolute z-20 w-76 text-left text-sm bg-white shadow-md rounded-xl mt-2">
-        <form action="#" class="space-y-4 px-4 py-6">
+        <form wire:submit.prevent="setStatus" action="#" class="space-y-4 px-4 py-6">
             <div class="space-y-2 font-semibold">
                 <div>
                     <label class="inline-flex items-center">
-                        <input type="radio" checked="checked" class="bg-slate-200 text-black border-none" name="radio-direct" value="1">
+                        <input wire:model="status" type="radio" checked="" class="bg-slate-200 text-black border-none" name="radio-direct" value="1">
                         <span class="ml-2">Open</span>
                     </label>
                 </div>
                 <div>
                     <label class="inline-flex items-center">
-                        <input type="radio" checked="" class="bg-slate-200 text-purple border-none" name="radio-direct" value="2">
+                        <input wire:model="status" type="radio" checked="" class="bg-slate-200 text-purple border-none" name="radio-direct" value="2">
                         <span class="ml-2">Considering</span>
                     </label>
                 </div>
                 <div>
                     <label class="inline-flex items-center">
-                        <input type="radio" checked="" class="bg-slate-200 text-yellow border-none" name="radio-direct" value="3">
+                        <input wire:model="status" type="radio" checked="" class="bg-slate-200 text-yellow border-none" name="radio-direct" value="3">
                         <span class="ml-2">In Progress</span>
                     </label>
                 </div>
                 <div>
                     <label class="inline-flex items-center">
-                        <input type="radio" checked="" class="bg-slate-200 text-green border-none" name="radio-direct" value="4">
+                        <input wire:model="status" type="radio" checked="" class="bg-slate-200 text-green border-none" name="radio-direct" value="4">
                         <span class="ml-2">Implemented</span>
                     </label>
                 </div>
                 <div>
                     <label class="inline-flex items-center">
-                        <input type="radio" checked="" class="bg-slate-200 text-red border-none" name="radio-direct" value="5">
+                        <input wire:model="status" type="radio" checked="" class="bg-slate-200 text-red border-none" name="radio-direct" value="5">
                         <span class="ml-2">Closed</span>
                     </label>
                 </div>
