@@ -8,7 +8,8 @@
         </a>
     </div>
     <livewire:idea-show :idea="$idea" :votesCount="$votesCount"/>
-    <livewire:edit-idea />
+    <livewire:edit-idea :idea="$idea" />
+
     <div class="comments_container relative space-y-6 ml-24 my-8">
         <div x-data="{isOpen: false}" class="comment_container relative mt-4 bg-white rounded-xl flex">
             <!-- avatar -->
