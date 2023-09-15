@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Http\Livewire\EditIdea;
+use App\Http\Livewire\IdeaShow;
 use App\Models\Category;
 use App\Models\Idea;
 use App\Models\Status;
@@ -94,5 +95,64 @@ class EditIdeaTest extends TestCase
             ->set('description', 'Updated')
             ->call('updateIdea')
             ->assertEmitted('ideaWasUpdated');
+
+        $this->assertDatabaseHas('ideas', [
+            'title' => 'Edited',
+            'description' => 'Updated',
+            'category_id' => $categoryTwo->id
+        ]);
+    }
+
+    /** @test */
+    public function editing_an_idea_shows_on_menu_when_user_has_auth()
+    {
+        $user = User::factory()->create();
+
+        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+
+        $status = Status::factory()->create(['name' => 'Open']);
+
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $categoryOne->id,
+            'status_id' => $status->id,
+            'title' => 'My idea',
+            'description' => 'description'
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(IdeaShow::class, [
+                'idea' => $idea,
+                'votesCount' => 10
+            ])
+            ->assertSee('Edit Idea');
+
+    }
+
+    /** @test */
+    public function editing_an_idea_shows_not_on_menu_when_user_has_no_auth()
+    {
+        $user = User::factory()->create();
+        $userB = User::factory()->create();
+
+        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+
+        $status = Status::factory()->create(['name' => 'Open']);
+
+        $idea = Idea::factory()->create([
+            'user_id' => $userB->id,
+            'category_id' => $categoryOne->id,
+            'status_id' => $status->id,
+            'title' => 'My idea',
+            'description' => 'description'
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(IdeaShow::class, [
+                'idea' => $idea,
+                'votesCount' => 10
+            ])
+            ->assertDontSee('Edit Idea');
+
     }
 }
