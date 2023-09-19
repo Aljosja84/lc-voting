@@ -35,10 +35,14 @@
                         <ul x-cloak x-show="isOpen" x-transition.origin.top.left.duration.300ms @click.away="isOpen = false" class="absolute top-4 w-44 font-semibold bg-white shadow-lg rounded-xl py-3 text-left" style="left:130px">
                             @can('update', $idea)
                                 <li>
-                                    <a href="#" @click="isOpen = false; $dispatch('custom-show-edit-modal')" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-2">Edit Idea</a>
+                                    <a href="#" @click.prevent="isOpen = false; $dispatch('custom-show-edit-modal')" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-2">Edit Idea</a>
                                 </li>
                             @endcan
-                            <li><a href="#" class="hover:bg-gray-100 px-5 py-2 block">Delete Idea</a></li>
+                            @can('delete', $idea)
+                                <li>
+                                    <a href="#" @click.prevent="isOpen = false; $dispatch('custom-show-delete-modal')" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-2">Delete Idea</a>
+                                </li>
+                            @endcan
                             <li><a href="#" class="hover:bg-gray-100 px-5 py-2 block">Mark as spam</a></li>
                         </ul>
                     </div>
