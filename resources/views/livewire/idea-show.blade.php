@@ -80,11 +80,9 @@
                     </form>
                 </div> <!-- end reply modal -->
             </div>
-            @auth
-                @if(auth()->user()->isAdmin())
-                    <livewire:set-status :idea="$idea" />
-                @endif
-            @endauth
+            @admin
+                <livewire:set-status :idea="$idea" />
+            @endadmin
         </div>
 
         <div class="flex items-center space-x-3">
