@@ -1,8 +1,8 @@
 <div x-data="{ isOpen: false }"
      x-show="isOpen"
-     @custom-show-spam-modal.window="isOpen=true"
+     @custom-show-not-spam-modal.window="isOpen=true"
      x-init="
-        window.livewire.on('ideaWasMarkedAsSpam', () => {
+        window.livewire.on('ideaWasNotSpam', () => {
             isOpen = false
         })
     "
@@ -22,16 +22,16 @@
                             </svg>
                         </div>
                         <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                            <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Mark this idea as Spam</h3>
+                            <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Reset Spam Counter</h3>
                             <div class="mt-2">
-                                <p class="text-sm text-gray-500">Are you sure you want to mark this idea as spam</p>
+                                <p class="text-sm text-gray-500">Are you sure you want to mark this idea as NOT spam? This will reset the spam counter to 0</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                    <button wire:click="markAsSpam" x-ref="confirmButton" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue text-base font-medium text-white hover:bg-blue-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue sm:ml-3 sm:w-auto sm:text-sm">
-                        Mark as Spam
+                    <button wire:click="markAsNotSpam" x-ref="confirmButton" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue text-base font-medium text-white hover:bg-blue-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue sm:ml-3 sm:w-auto sm:text-sm">
+                        Reset Spam Counter
                     </button>
                     <button @click="isOpen = false" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                         Cancel

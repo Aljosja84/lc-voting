@@ -12,6 +12,11 @@
                     <a href="#" class="hover:underline">{{ $idea->title }}</a>
                 </h4>
                 <div class="text-gray-600 mt-3">
+                    @admin
+                        @if($idea->spam_reports > 0)
+                            <div class="text-red mb-2">Spam Reports: [{{ $idea->spam_reports }}]</div>
+                        @endif
+                    @endadmin
                     {{ $idea->description }}
                 </div>
 
@@ -48,6 +53,13 @@
                                     <li>
                                         <a href="#" @click.prevent="isOpen = false; $dispatch('custom-show-spam-modal')" class="hover:bg-gray-100 px-5 py-2 block">Mark as spam</a>
                                     </li>
+                                 @admin
+                                    @if($idea->spam_reports > 0)
+                                        <li>
+                                            <a href="#" @click.prevent="isOpen = false; $dispatch('custom-show-not-spam-modal')" class="hover:bg-gray-100 px-5 py-2 block">Not spam</a>
+                                        </li>
+                                    @endif
+                                 @endadmin
                             </ul>
                         </div>
                     </div>

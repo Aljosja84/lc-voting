@@ -15,6 +15,7 @@
         <livewire:delete-idea :idea="$idea" />
     @endcan
         <livewire:mark-idea-as-spam :idea="$idea" />
+        <livewire:mark-idea-as-not-spam :idea="$idea" />
     <div class="comments_container relative space-y-6 ml-24 my-8">
         <div x-data="{isOpen: false}" class="comment_container relative mt-4 bg-white rounded-xl flex">
             <!-- avatar -->

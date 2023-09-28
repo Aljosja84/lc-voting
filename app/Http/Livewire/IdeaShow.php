@@ -13,7 +13,7 @@ class IdeaShow extends Component
     public $votesCount;
     public $hasVoted;
 
-    protected $listeners = ['statusChanged', 'ideaWasUpdated'];
+    protected $listeners = ['statusChanged', 'ideaWasUpdated', 'ideaWasMarkedAsSpam', 'ideaWasNotSpam'];
 
     /**
      * @param Idea $idea
@@ -38,6 +38,16 @@ class IdeaShow extends Component
      *
      */
     public function ideaWasUpdated()
+    {
+        $this->idea->refresh();
+    }
+
+    public function ideaWasMarkedAsSpam()
+    {
+        $this->idea->refresh();
+    }
+
+    public function ideaWasNotSpam()
     {
         $this->idea->refresh();
     }
