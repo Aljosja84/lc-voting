@@ -114,4 +114,28 @@ class SpamManagementTest extends TestCase
             ->call('markAsSpam')
             ->assertStatus(Response::HTTP_FORBIDDEN);
     }
+
+    /** @test */
+    public function marking_an_idea_as_spam_shows_on_menu_when_user_has_auth()
+    {
+        $user = User::factory()->create();
+
+        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+
+        $status = Status::factory()->create(['name' => 'Open']);
+
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $categoryOne->id,
+            'status_id' => $status->id,
+            'title' => 'My idea',
+            'description' => 'description'
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(MarkIdeaAsSpam::class, [
+                'idea' => $idea,
+            ])
+            ->assertSee('Mark as Spam');
+    }
 }
