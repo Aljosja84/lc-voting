@@ -56,4 +56,41 @@ class OtherFiltersTest extends TestCase
             });
     }
 
+    /** @test */
+    public function spam_ideas_filter_works_correctly()
+    {
+        $user = User::factory()->create([
+            'email' => 'gabriel@gressie.net'
+        ]);
+
+        $category = Category::factory()->create(['name' => 'Category 1']);
+
+        $status = Status::factory()->create(['name' => 'Open']);
+
+        $ideaOne = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'status_id' => $status->id,
+            'title' => 'My idea',
+            'description' => 'description',
+            'spam_reports' => 4
+        ]);
+
+        $ideaTwo = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'status_id' => $status->id,
+            'title' => 'My idea Two',
+            'description' => 'description',
+            'spam_reports' => 3
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(IdeasIndex::class)
+            ->set('filter', 'Spam Ideas')
+            ->assertViewHas('ideas', function($ideas) {
+                return $ideas->count() === 2;
+            });
+    }
+
 }
