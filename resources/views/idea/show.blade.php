@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout xmlns:x-transition="http://www.w3.org/1999/xhtml">
     <div>
         <a href="{{ $backUrl }}" class="flex items-center font-semibold hover:underline">
             <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
@@ -8,7 +8,13 @@
         </a>
     </div>
     <livewire:idea-show :idea="$idea" :votesCount="$votesCount"/>
+
+    <!-- success notification -->
+    <x-notification-success />
+    <!-- end success notification -->
+
     <x-modals-container :idea="$idea" />
+
     <div class="comments_container relative space-y-6 ml-24 my-8">
         <div x-data="{isOpen: false}" class="comment_container relative mt-4 bg-white rounded-xl flex">
             <!-- avatar -->
