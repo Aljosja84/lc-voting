@@ -48,7 +48,7 @@ class EditIdea extends Component
         ]);
 
         // emit the event so that the modal can be closed
-        $this->emit('ideaWasUpdated');
+        $this->emit('ideaWasUpdated', 'Idea was updated successfully!');
     }
 
     public function render()
