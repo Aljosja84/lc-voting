@@ -29,21 +29,4 @@
         </button>
         <button type="submit" class="font-semibold bg-blue border border-blue text-white hover:bg-blue-hover transition duration-200 ease-in text-xs w-1/2 h-11 rounded-xl">Submit</button>
     </div>
-    <!-- message from server -->
-    <div>
-        @if(session('success_message'))
-            <div
-                x-data="{ isVisible: true }"
-                x-init="
-                    setTimeout(() => {
-                        isVisible = false
-                    }, 4000)
-                "
-                x-show="isVisible"
-                x-transition.duration.1000ms
-                class="text-green mt-4">
-                {{ session('success_message') }}
-            </div>
-        @endif
-    </div>
 </form>

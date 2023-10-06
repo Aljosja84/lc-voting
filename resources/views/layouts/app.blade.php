@@ -98,6 +98,11 @@
 
             </div>
         </main>
+        <!-- success notification -->
+        @if(session('success_message'))
+            <x-notification-success />
+        @endif
+        <!-- end success notification -->
         <livewire:scripts />
     </body>
 </html>

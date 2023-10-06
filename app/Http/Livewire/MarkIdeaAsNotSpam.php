@@ -25,6 +25,8 @@ class MarkIdeaAsNotSpam extends Component
         $this->idea->save();
 
         $this->emit('ideaWasNotSpam');
+        // emit the success notification
+        $this->emit('successNotify', 'Idea spam count has been reset to 0!');
     }
 
     public function render()

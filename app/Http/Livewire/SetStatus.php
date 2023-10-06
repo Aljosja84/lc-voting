@@ -13,6 +13,7 @@ class SetStatus extends Component
 {
     public $idea;
     public $status;
+    public $statusName;
     public $notifyAllVoters;
 
     public function mount(Idea $idea)
@@ -29,7 +30,16 @@ class SetStatus extends Component
 
         // we're logged in and we have admin priviledges
         $this->idea->status_id = $this->status;
+
         $this->idea->save();
+
+        $this->statusName = Idea::find($this->idea->id)->status->name;
+
+
+
+        // emit success notification
+
+        $this->emit('successNotify', "Status changed to: $this->statusName" );
 
         // let's notify all voters
         if($this->notifyAllVoters) {

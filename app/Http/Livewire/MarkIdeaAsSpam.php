@@ -27,6 +27,8 @@ class MarkIdeaAsSpam extends Component
 
         // let parent know idea was marked as spam
         $this->emit('ideaWasMarkedAsSpam');
+        // emit the success notification
+        $this->emit('successNotify', 'Idea was marked as spam!');
     }
 
     public function render()

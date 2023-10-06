@@ -2,15 +2,22 @@
     x-cloak
     x-data="{
         isOpen: false,
-        messageToDisplay: ''
+        messageToDisplay: '{{ session('success_message') }}'
     }"
     x-init="
-         Livewire.on('ideaWasUpdated', message => {
+        @if(session('success_message'))
+            $nextTick(() => isOpen = true)
+
+            setTimeout(() => {
+                isOpen = false
+            }, 5000)
+        @endif
+         Livewire.on('successNotify', message => {
               isOpen = true
               messageToDisplay = message
               setTimeout(() => {
                 isOpen = false
-              }, 5000)
+              }, 4000)
           })
             "
     x-show="isOpen"
