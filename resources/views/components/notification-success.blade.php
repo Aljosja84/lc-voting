@@ -2,7 +2,9 @@
     x-cloak
     x-data="{
         isOpen: false,
-        messageToDisplay: '{{ session('success_message') }}'
+        messageToDisplay: '{{ session('success_message') }}',
+        jelle: [],
+        frank: [],
     }"
     x-init="
         @if(session('success_message'))
@@ -12,9 +14,10 @@
                 isOpen = false
             }, 5000)
         @endif
-         Livewire.on('successNotify', message => {
+         Livewire.on('successNotify', (message) => {
               isOpen = true
-              messageToDisplay = message
+              jelle = message[1]
+              frank = message[0]
               setTimeout(() => {
                 isOpen = false
               }, 4000)
@@ -33,7 +36,8 @@
         <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-green w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
-        <div class="ml-2" x-text="messageToDisplay"></div>
+        <div class="ml-2" :class="jelle">kleurtje</div>
+        <div class="ml-2" x-text="frank"></div>
     </div>
     <button class="text-gray-500" @click="isOpen = false">
         <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

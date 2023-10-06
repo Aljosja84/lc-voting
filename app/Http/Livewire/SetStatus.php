@@ -14,7 +14,9 @@ class SetStatus extends Component
     public $idea;
     public $status;
     public $statusName;
+    public $statusColor;
     public $notifyAllVoters;
+    public $data = [];
 
     public function mount(Idea $idea)
     {
@@ -33,13 +35,16 @@ class SetStatus extends Component
 
         $this->idea->save();
 
-        $this->statusName = Idea::find($this->idea->id)->status->name;
+        $savedIdea = Idea::find($this->idea->id);
+        $this->statusName = $savedIdea->status->name;
+        $this->statusColor = $savedIdea->status->getStatusClasses();
 
 
 
         // emit success notification
+        $data = ["Status changed to: $this->statusName", "text-green"];
 
-        $this->emit('successNotify', "Status changed to: $this->statusName" );
+        $this->emit('successNotify', $data);
 
         // let's notify all voters
         if($this->notifyAllVoters) {
