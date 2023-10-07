@@ -37,6 +37,29 @@ class Status extends Model
         }
     }
 
+    public function getStatusTextColor()
+    {
+        switch($this->name) {
+            case "Open":
+                return 'text-black';
+                break;
+            case "Considering":
+                return 'text-purple';
+                break;
+            case "In Progress":
+                return 'text-yellow';
+                break;
+            case "Implemented":
+                return 'text-green';
+                break;
+            case "Closed":
+                return 'text-red';
+                break;
+            default:
+                return 'text-gray-600';
+        }
+    }
+
     public static function getCount()
     {
         return Idea::query()

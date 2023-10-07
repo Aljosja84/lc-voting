@@ -13,8 +13,6 @@ class SetStatus extends Component
 {
     public $idea;
     public $status;
-    public $statusName;
-    public $statusColor;
     public $notifyAllVoters;
     public $data = [];
 
@@ -34,15 +32,16 @@ class SetStatus extends Component
         $this->idea->status_id = $this->status;
 
         $this->idea->save();
+        $this->idea->refresh();
+        //$savedIdea = Idea::find($this->idea->id);
 
-        $savedIdea = Idea::find($this->idea->id);
-        $this->statusName = $savedIdea->status->name;
-        $this->statusColor = $savedIdea->status->getStatusClasses();
+        $statusName = $this->idea->status->name;
+        $statusColor = $this->idea->status->getStatusTextColor();
 
 
 
         // emit success notification
-        $data = ["Status changed to: $this->statusName", "text-green"];
+        $data = "Status changed to: <span class='$statusColor'>$statusName</span>";
 
         $this->emit('successNotify', $data);
 
