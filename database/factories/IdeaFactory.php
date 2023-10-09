@@ -23,4 +23,16 @@ class IdeaFactory extends Factory
             'description' => $this->faker->paragraph(5),
         ];
     }
+
+    public function existing()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'user_id' => $this->faker->numberBetween(1, 20),
+                'category_id' => $this->faker->numberBetween(1, 4),
+                'status_id' => $this->faker->numberBetween(1, 5),
+
+            ];
+        });
+    }
 }
