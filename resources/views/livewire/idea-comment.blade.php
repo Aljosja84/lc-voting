@@ -3,24 +3,23 @@
     <div class="flex flex-1 px-2 py-6 pl-4">
         <div class="flex-none">
             <a href="#">
-                <img src="https://source.unsplash.com/200x200/?face&crop=face&v=2" alt="go to profile" class="w-14 h-14 rounded-xl">
+                <img src="{{ \App\Models\User::getAvatar() }}" alt="go to profile" class="w-14 h-14 rounded-xl">
             </a>
         </div>
         <div class="w-full mx-4">
             {{-- <h4 class="text-xl font-semibold">
                 <a href="#" class="hover:underline">Just a random idea that popped up</a>
             </h4> --}}
-            <div class="text-gray-600 mt-3 line-clamp-3">
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-                Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text.
+            <div class="text-gray-600">
+                {{ $comment->body }}
             </div>
 
             <!-- idea details -->
             <div class="flex items-center justify-between mt-6">
                 <div class="flex items-center text-xs text-gray-400 space-x-2">
-                    <div class="font-bold text-gray-900">Aljosja84</div>
+                    <div class="font-bold text-gray-900">{{ $comment->user->name }}</div>
                     <div>&bull;</div>
-                    <div>10 hours ago</div>
+                    <div>{{ $comment->created_at->diffForHumans() }}</div>
                 </div>
 
                 <div class="relative flex items-center space-x-2">

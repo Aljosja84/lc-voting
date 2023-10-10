@@ -46,6 +46,15 @@ class Idea extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function commentsAmount()
+    {
+        if ($this->comments->count() === 1) {
+            return $this->comments->count() . ' comment';
+        }
+
+        return $this->comments->count() . ' comments';
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
