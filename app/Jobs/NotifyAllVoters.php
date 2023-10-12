@@ -17,10 +17,11 @@ class NotifyAllVoters implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $idea;
+
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param Idea $idea
      */
     public function __construct(Idea $idea)
     {

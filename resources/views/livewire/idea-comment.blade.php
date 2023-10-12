@@ -17,6 +17,8 @@
             <!-- idea details -->
             <div class="flex items-center justify-between mt-6">
                 <div class="flex items-center text-xs text-gray-400 space-x-2">
+                    <div class="rounded-full border bg-gray-100 px-3 py-1 font-semibold text-blue">OP</div>
+                    <div>&bull;</div>
                     <div class="font-bold text-gray-900">{{ $comment->user->name }}</div>
                     <div>&bull;</div>
                     <div>{{ $comment->created_at->diffForHumans() }}</div>
