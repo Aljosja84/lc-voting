@@ -7,3 +7,7 @@
         />
     @endforeach
 </div>
+
+<div class="my-8">
+    {{ $comments->onEachSide(1)->links() }}
+</div>
