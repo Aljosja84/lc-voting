@@ -35,7 +35,7 @@ class IdeaComments extends Component
     public function render()
     {
         return view('livewire.idea-comments', [
-            'comments' => $this->idea->comments()->paginate()->withQueryString(),
+            'comments' => $this->idea->comments()->with('user')->paginate()->withQueryString(),
         ]);
     }
 }
