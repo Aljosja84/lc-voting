@@ -121,15 +121,9 @@ class ShowCommentsTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $category = Category::factory()->create(['name' => 'Category 1']);
-        $status = Status::factory()->create(['name' => 'Open']);
-
         $idea = Idea::factory()->create([
             'user_id' => $user->id,
-            'category_id' => 1,
-            'status_id' => 1,
-            'title' => 'My idea',
-            'description' => 'description'
+
         ]);
 
         $commentOne = Comment::factory()->create([
@@ -152,16 +146,7 @@ class ShowCommentsTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $category = Category::factory()->create(['name' => 'Category 1']);
-        $status = Status::factory()->create(['name' => 'Open']);
-
-        $idea = Idea::factory()->create([
-            'user_id' => $user->id,
-            'category_id' => 1,
-            'status_id' => 1,
-            'title' => 'My idea',
-            'description' => 'description'
-        ]);
+        $idea = Idea::factory()->create();
 
         $commentOne = Comment::factory()->create([
             'user_id' => $user->id,
@@ -171,6 +156,6 @@ class ShowCommentsTest extends TestCase
 
         $this
             ->get(route('idea.show', $idea))
-            ->assertSee('OP');
+            ->assertDontSee('OP');
     }
 }
