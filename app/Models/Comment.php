@@ -11,7 +11,7 @@ class Comment extends Model
 
     protected $guarded = [];
 
-    /**
+     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function idea()

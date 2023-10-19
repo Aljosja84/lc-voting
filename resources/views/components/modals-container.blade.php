@@ -10,4 +10,8 @@
     <livewire:mark-idea-as-spam :idea="$idea" />
 @endif
 
-<livewire:mark-idea-as-not-spam :idea="$idea" />
+@admin
+    <livewire:mark-idea-as-not-spam :idea="$idea" />
+@endadmin
+
+<livewire:edit-comment />
