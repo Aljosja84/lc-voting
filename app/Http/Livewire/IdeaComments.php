@@ -11,12 +11,17 @@ class IdeaComments extends Component
     use WithPagination;
     public $idea;
 
-    protected $listeners = ['commentWasAdded'];
+    protected $listeners = ['commentWasAdded', 'commentWasDeleted'];
 
     /**
      *
      */
     public function commentWasAdded()
+    {
+        $this->idea->refresh();
+    }
+
+    public function commentWasDeleted()
     {
         $this->idea->refresh();
     }
@@ -35,7 +40,7 @@ class IdeaComments extends Component
     public function render()
     {
         return view('livewire.idea-comments', [
-            'comments' => $this->idea->comments()->with('user')->paginate()->withQueryString(),
+            'comments' => $this->idea->comments()->with('user')->simplePaginate(),
         ]);
     }
 }
