@@ -12,17 +12,28 @@ class IdeaComment extends Component
 
     protected $listeners = ['commentWasUpdated'];
 
+    /**
+     *
+     */
     public function commentWasUpdated()
     {
         $this->comment->refresh();
+        $this->comment->idea->refresh();
     }
 
+    /**
+     * @param Comment $comment
+     * @param $ideaUserId
+     */
     public function mount(Comment $comment, $ideaUserId)
     {
         $this->comment = $comment;
         $this->ideaUserId = $ideaUserId;
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('livewire.idea-comment');

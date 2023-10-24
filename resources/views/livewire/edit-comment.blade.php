@@ -33,7 +33,7 @@
 
                 <form wire:submit.prevent="updateComment" action="#" method="POST" class="space-y-4 px-4 py-6">
                     <div>
-                        <textarea wire:model.defer="body" name="idea" id="idea" cols="30" rows="4" class="w-full bg-gray-100 rounded-xl border-none placeholder-gray-900 text-sm px-4 py-2" placeholder="Change your comment" required></textarea>
+                        <textarea wire:model.defer="body" cols="30" rows="4" class="w-full bg-gray-100 rounded-xl border-none placeholder-gray-900 text-sm px-4 py-2" placeholder="Change your comment"></textarea>
                         @error('body')
                         <p class="text-red text-xs mt-1">{{ $message }}</p>
                         @enderror
