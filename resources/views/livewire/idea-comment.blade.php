@@ -10,6 +10,11 @@
             {{-- <h4 class="text-xl font-semibold">
                 <a href="#" class="hover:underline">Just a random idea that popped up</a>
             </h4> --}}
+            @admin
+                @if($comment->spam_reports > 0)
+                    <div class="text-red mb-2">Spam Reports: [{{ $comment->spam_reports }}]</div>
+                @endif
+            @endadmin
             <div class="text-gray-600">
                 {{ $comment->body }}
             </div>
@@ -59,6 +64,18 @@
                                         "
                                        class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-2">Mark as Spam</a>
                                 </li>
+                             @admin
+                                @if($comment->spam_reports > 0)
+                                    <li>
+                                        <a href="#" @click.prevent="
+                                    isOpen = false
+                                    Livewire.emit('setMarkAsNotSpamComment', {{ $comment->id }})
+                                    {{-- $dispatch('custom-show-edit-modal') --}}
+                                        "
+                                       class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-2">Not Spam</a>
+                                    </li>
+                                @endif
+                            @endadmin
                         </ul>
                     </div>
                 @endauth

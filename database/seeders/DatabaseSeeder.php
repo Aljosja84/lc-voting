@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
         Category::factory()->create(['name' => 'Category 4']);
 
         // \App\Models\User::factory(10)->create();
-        Idea::factory(100)->create();
+        Idea::factory(100)->existing()->create();
 
         // generate unique votes
         foreach (range(1,20) as $user_id) {

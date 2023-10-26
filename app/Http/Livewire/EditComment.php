@@ -45,6 +45,7 @@ class EditComment extends Component
 
         $this->comment->body = $this->body;
         $this->comment->save();
+        $this->comment = null;
 
         $this->emit('commentWasUpdated');
         $this->emit('successNotify', 'Comment updated successfully!');

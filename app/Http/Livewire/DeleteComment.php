@@ -37,6 +37,7 @@ class DeleteComment extends Component
         }
 
         $this->comment->delete();
+        $this->comment = null;
 
         $this->emit('commentWasDeleted');
         $this->emit('successNotify', 'Comment deleted successfully!');
