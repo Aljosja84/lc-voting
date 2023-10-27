@@ -26,4 +26,14 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
+
+    public function getStatusColor($status)
+    {
+        //
+    }
 }

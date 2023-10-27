@@ -1,10 +1,13 @@
-<div x-data="{isOpen: false}" class="comment_container relative mt-4 bg-white rounded-xl flex">
+<div x-data="{isOpen: false}" class="@if($comment->user->isAdmin()) is-status-update {{ $comment->status->getStatusClassesCircle() }} @endif comment_container relative mt-4 bg-white rounded-xl flex">
     <!-- avatar -->
     <div class="flex flex-1 px-2 py-6 pl-4">
         <div class="flex-none">
             <a href="#">
                 <img src="{{ \App\Models\User::getAvatar() }}" alt="go to profile" class="w-14 h-14 rounded-xl">
             </a>
+            @if($comment->user->isAdmin())
+                <div class="text-center uppercase text-blue text-xxs font-bold mt-1">Admin</div>
+            @endif
         </div>
         <div class="w-full mx-4">
             {{-- <h4 class="text-xl font-semibold">
@@ -15,6 +18,11 @@
                     <div class="text-red mb-2">Spam Reports: [{{ $comment->spam_reports }}]</div>
                 @endif
             @endadmin
+            @if($comment->user->isAdmin())
+                <h4 class="text-xl font-semibold mb-4">
+                    Status Changed to '<span class="{{ $comment->status->getStatusTextColor() }}">{{ $comment->status->name }}</span>'
+                </h4>
+            @endif
             <div class="text-gray-600">
                 {{ $comment->body }}
             </div>
@@ -26,7 +34,7 @@
                         <div class="rounded-full border bg-gray-100 px-3 py-1 font-semibold text-blue">OP</div>
                         <div>&bull;</div>
                     @endif
-                    <div class="font-bold text-gray-900">{{ $comment->user->name }}</div>
+                    <div class="@if ($comment->is_status_update) text-blue @endif font-bold text-gray-900">{{ $comment->user->name }}</div>
                     <div>&bull;</div>
                     <div>{{ $comment->created_at->diffForHumans() }}</div>
                 </div>

@@ -19,10 +19,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $numberIdeas = 5;
         // make myself a user first
         User::factory()->create([
            'name' => 'Gabriel',
-           'email' => 'gabriel.gressie@gmail.com'
+           'email' => 'gabriel@gressie.net'
         ]);
         // followed by 19 other, random users
         User::factory(19)->create();
@@ -39,11 +40,11 @@ class DatabaseSeeder extends Seeder
         Category::factory()->create(['name' => 'Category 4']);
 
         // \App\Models\User::factory(10)->create();
-        Idea::factory(100)->existing()->create();
+        Idea::factory($numberIdeas)->existing()->create();
 
         // generate unique votes
         foreach (range(1,20) as $user_id) {
-            foreach (range(1, 100) as $idea_id) {
+            foreach (range(1, $numberIdeas) as $idea_id) {
                 if($idea_id % 2 === 0) {
                     Vote::factory()->create([
                         'user_id' => $user_id,

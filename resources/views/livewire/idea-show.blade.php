@@ -50,16 +50,18 @@
                                         <a href="#" @click.prevent="isOpen = false; $dispatch('custom-show-delete-modal')" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-2">Delete Idea</a>
                                     </li>
                                 @endcan
+                                @auth
                                     <li>
                                         <a href="#" @click.prevent="isOpen = false; $dispatch('custom-show-spam-modal')" class="hover:bg-gray-100 px-5 py-2 block">Mark as spam</a>
                                     </li>
-                                 @admin
+                                @endauth
+                                @admin
                                     @if($idea->spam_reports > 0)
                                         <li>
                                             <a href="#" @click.prevent="isOpen = false; $dispatch('custom-show-not-spam-modal')" class="hover:bg-gray-100 px-5 py-2 block">Not spam</a>
                                         </li>
                                     @endif
-                                 @endadmin
+                                @endadmin
                             </ul>
                         </div>
                     </div>

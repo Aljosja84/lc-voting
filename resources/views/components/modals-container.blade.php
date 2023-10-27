@@ -6,9 +6,9 @@
     <livewire:delete-idea :idea="$idea" />
 @endcan
 
-@if(!auth()->guest())
+@auth
     <livewire:mark-idea-as-spam :idea="$idea" />
-@endif
+@endauth
 
 @admin
     <livewire:mark-idea-as-not-spam :idea="$idea" />

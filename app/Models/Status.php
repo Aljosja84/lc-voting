@@ -37,6 +37,29 @@ class Status extends Model
         }
     }
 
+    public function getStatusClassesCircle()
+    {
+        switch($this->name) {
+            case "Open":
+                return 'status-open';
+                break;
+            case "Considering":
+                return 'status-considering';
+                break;
+            case "In Progress":
+                return 'status-in-progress';
+                break;
+            case "Implemented":
+                return 'status-implemented';
+                break;
+            case "Closed":
+                return 'status-closed';
+                break;
+            default:
+                return 'status-open';
+        }
+    }
+
     public function getStatusTextColor()
     {
         switch($this->name) {

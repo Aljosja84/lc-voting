@@ -121,51 +121,30 @@ class SpamManagementTest extends TestCase
     /** @test */
     public function marking_an_idea_as_spam_shows_on_menu_when_user_has_auth()
     {
-        $user = User::factory()->create();
-
-        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
-
-        $status = Status::factory()->create(['name' => 'Open']);
-
-        $idea = Idea::factory()->create([
-            'user_id' => $user->id,
-            'category_id' => $categoryOne->id,
-            'status_id' => $status->id,
-            'title' => 'My idea',
-            'description' => 'description'
+        $user = User::factory()->create([
+            'email' => 'gabriel@gressie.net'
         ]);
 
+        $idea = Idea::factory()->create();
+
         Livewire::actingAs($user)
-            ->test(MarkIdeaAsSpam::class, [
+            ->test(IdeaShow::class, [
                 'idea' => $idea,
-                'votesCount' => 400
+                'votesCount' => 4,
             ])
-            ->assertSee('Mark as Spam');
+            ->assertSee('Mark as spam');
     }
 
     /** @test */
-    public function marking_an_idea_as_spam_does_not_show_on_menu_when_user_has_no_auth()
+    public function marking_an_idea_as_spam_does_not_show_on_menu_when_user_does_not_have_authorization()
     {
-        $user = User::factory()->create();
+        $idea = Idea::factory()->create();
 
-        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
-
-        $status = Status::factory()->create(['name' => 'Open']);
-
-        $idea = Idea::factory()->create([
-            'user_id' => $user->id,
-            'category_id' => $categoryOne->id,
-            'status_id' => $status->id,
-            'title' => 'My idea',
-            'description' => 'description'
-        ]);
-
-        Livewire::test
-            (IdeaShow::class, [
-                'idea' => $idea,
-                'votesCount' => 400
-            ])
-            ->assertDontSee('Mark as Spam');
+        Livewire::test(IdeaShow::class, [
+            'idea' => $idea,
+            'votesCount' => 4,
+        ])
+            ->assertDontSee('Mark as spam');
     }
 
     /** @test */
