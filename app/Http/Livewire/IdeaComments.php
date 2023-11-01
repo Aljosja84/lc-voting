@@ -11,7 +11,7 @@ class IdeaComments extends Component
     use WithPagination;
     public $idea;
 
-    protected $listeners = ['commentWasAdded', 'commentWasDeleted'];
+    protected $listeners = ['commentWasAdded', 'commentWasDeleted', 'statusChanged'];
 
     /**
      *
@@ -22,6 +22,11 @@ class IdeaComments extends Component
     }
 
     public function commentWasDeleted()
+    {
+        $this->idea->refresh();
+    }
+
+    public function statusChanged()
     {
         $this->idea->refresh();
     }
