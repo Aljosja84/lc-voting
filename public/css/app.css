@@ -713,23 +713,20 @@ select {
 .right-0 {
   right: 0px;
 }
+.right-2 {
+  right: 0.5rem;
+}
 .top-0 {
   top: 0px;
+}
+.top-1 {
+  top: 0.25rem;
 }
 .top-4 {
   top: 1rem;
 }
 .top-8 {
   top: 2rem;
-}
-.top-2 {
-  top: 0.5rem;
-}
-.right-2 {
-  right: -6px;
-}
-.top-1 {
-  top: 2px;
 }
 .z-0 {
   z-index: 0;
@@ -825,6 +822,18 @@ select {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }
+.line-clamp-6 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+}
+.line-clamp-4 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
 .block {
   display: block;
 }
@@ -878,6 +887,12 @@ select {
 }
 .h-full {
   height: 100%;
+}
+.max-h-128 {
+  max-height: 32rem;
+}
+.max-h-64 {
+  max-height: 16rem;
 }
 .min-h-full {
   min-height: 100%;
@@ -947,6 +962,9 @@ select {
 }
 .w-8 {
   width: 2rem;
+}
+.w-96 {
+  width: 24rem;
 }
 .w-auto {
   width: auto;
@@ -1119,6 +1137,9 @@ select {
 }
 .overflow-y-auto {
   overflow-y: auto;
+}
+.overflow-y-scroll {
+  overflow-y: scroll;
 }
 .rounded {
   border-radius: 0.25rem;
