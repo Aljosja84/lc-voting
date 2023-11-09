@@ -1,6 +1,6 @@
-<div x-data="{isOpen: false}" class="@if($comment->user->isAdmin()) is-status-update {{ $comment->status->getStatusClassesCircle() }} @endif comment_container relative mt-4 bg-white rounded-xl flex">
+<div x-data="{isOpen: false}" class="@if($comment->status != null) is-status-update {{ $comment->status->getStatusClassesCircle() }} @endif comment_container relative mt-4 bg-white rounded-xl flex">
     <!-- avatar -->
-    <div class="flex flex-1 px-2 py-6 pl-4">
+    <div class="flex flex-1 px-2 py-6 @if($comment->status != null) pl-8 @endif pl-2">
         <div class="flex-none">
             <a href="#">
                 <img src="{{ \App\Models\User::getAvatar() }}" alt="go to profile" class="w-14 h-14 rounded-xl">
@@ -18,7 +18,7 @@
                     <div class="text-red mb-2">Spam Reports: [{{ $comment->spam_reports }}]</div>
                 @endif
             @endadmin
-            @if($comment->user->isAdmin())
+            @if($comment->status != null)
                 <h4 class="text-xl font-semibold mb-4">
                     Status Changed to '<span class="{{ $comment->status->getStatusTextColor() }}">{{ $comment->status->name }}</span>'
                 </h4>
