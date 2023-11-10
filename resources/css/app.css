@@ -54,6 +54,16 @@
     z-index: 1;
 }
 
+.status_update_notification_avatar {
+    min-width: 40px !important;
+    height: 40px;
+    border-radius: 40px;
+    border: 7px solid #dbdbdb;
+    box-shadow: 4px 4px 15px 0 rgba(36, 37, 38, 0.08);
+    opacity: 1;
+    z-index: 1;
+}
+
 .is-status-update {
     border-width: 1px;
     border-image-source: linear-gradient(266deg, #21c8f6 98%, #637bff -52%);
@@ -78,9 +88,29 @@
 }
 
 .status-implemented:before {
-    @apply bg-purple
+    @apply bg-green
 }
 
 .status-closed:before {
     @apply bg-red
+}
+
+/** status colors for the notification centre */
+.status-closed {
+    @apply bg-red
+}
+.status-open {
+    @apply bg-gray-200
+}
+
+.status-considering {
+    @apply bg-purple
+}
+
+.status-in-progress {
+    @apply bg-yellow
+}
+
+.status-implemented {
+    @apply bg-green
 }

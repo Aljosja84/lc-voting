@@ -6,6 +6,8 @@ use App\Jobs\NotifyAllVoters;
 use App\Mail\IdeaStatusUpdateMailable;
 use App\Models\Comment;
 use App\Models\Idea;
+use App\Notifications\CommentAdded;
+use App\Notifications\statusChanged;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -53,13 +55,18 @@ class SetStatus extends Component
         };
 
         // add a comment
-        Comment::create([
+        $statusComment = Comment::create([
             'user_id' => auth()->id(),
             'idea_id' => $this->idea->id,
             'status_id' => $this->status,
             'body' => $this->comment ?? 'status has changed',
             'is_status_update' => true,
         ]);
+
+        // notification centre
+        // notify the idea's creator
+        $this->idea->user->notify(new statusChanged($this->idea, $statusComment));
+
         // and reset the comment
         $this->reset('comment');
 

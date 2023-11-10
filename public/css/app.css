@@ -713,8 +713,8 @@ select {
 .right-0 {
   right: 0px;
 }
-.right-2 {
-  right: 0.5rem;
+.right-3 {
+  right: 0.75rem;
 }
 .top-0 {
   top: 0px;
@@ -727,9 +727,6 @@ select {
 }
 .top-8 {
   top: 2rem;
-}
-.right-3 {
-  right: 0.75rem;
 }
 .z-0 {
   z-index: 0;
@@ -1687,6 +1684,16 @@ select {
     z-index: 1;
 }
 
+.status_update_notification_avatar {
+    min-width: 40px !important;
+    height: 40px;
+    border-radius: 40px;
+    border: 7px solid #dbdbdb;
+    box-shadow: 4px 4px 15px 0 rgba(36, 37, 38, 0.08);
+    opacity: 1;
+    z-index: 1;
+}
+
 .is-status-update {
     border-width: 1px;
     border-image-source: linear-gradient(266deg, #21c8f6 98%, #637bff -52%);
@@ -1715,12 +1722,37 @@ select {
 
 .status-implemented:before {
   --tw-bg-opacity: 1;
-  background-color: rgb(139 96 237 / var(--tw-bg-opacity));
+  background-color: rgb(26 171 139 / var(--tw-bg-opacity));
 }
 
 .status-closed:before {
   --tw-bg-opacity: 1;
   background-color: rgb(236 69 79 / var(--tw-bg-opacity));
+}
+
+/** status colors for the notification centre */
+.status-closed {
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 69 79 / var(--tw-bg-opacity));
+}
+.status-open {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 229 229 / var(--tw-bg-opacity));
+}
+
+.status-considering {
+  --tw-bg-opacity: 1;
+  background-color: rgb(139 96 237 / var(--tw-bg-opacity));
+}
+
+.status-in-progress {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 199 60 / var(--tw-bg-opacity));
+}
+
+.status-implemented {
+  --tw-bg-opacity: 1;
+  background-color: rgb(26 171 139 / var(--tw-bg-opacity));
 }
 
 .hover\:border-blue:hover {
