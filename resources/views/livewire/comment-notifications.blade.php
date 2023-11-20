@@ -6,7 +6,9 @@
         <svg viewBox="0 0 24 24" fill="currentColor" class="mt-2 w-8 h-8 text-gray-400">
             <path fill-rule="evenodd" d="M5.25 9a6.75 6.75 0 0113.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 01-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 11-7.48 0 24.585 24.585 0 01-4.831-1.244.75.75 0 01-.298-1.205A8.217 8.217 0 005.25 9.75V9zm4.502 8.9a2.25 2.25 0 104.496 0 25.057 25.057 0 01-4.496 0z" clip-rule="evenodd" />
         </svg>
-        <div class="absolute rounded-full bg-red text-white text-xxs w-5 h-5 flex justify-center items-center top-1 right-3 border-2">3</div>
+        @if($notificationCount)
+            <div class="absolute rounded-full bg-red text-white text-xxs w-5 h-5 flex justify-center items-center top-1 right-3 border-2">{{ $notificationCount }}</div>
+        @endif
     </button>
     <ul x-cloak x-show="isOpen" x-transition.origin.top.duration.300ms @click.away="isOpen = false" class="absolute top-4 w-96 max-h-128 overflow-y-auto bg-white shadow-lg rounded-xl text-left text-xs" style="right:-55px; top: 50px">
         @foreach($notifications as $notification)

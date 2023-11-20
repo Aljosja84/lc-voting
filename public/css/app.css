@@ -1688,7 +1688,7 @@ select {
     min-width: 40px !important;
     height: 40px;
     border-radius: 40px;
-    border: 7px solid #dbdbdb;
+    border: 5px solid #dbdbdb;
     box-shadow: 4px 4px 15px 0 rgba(36, 37, 38, 0.08);
     opacity: 1;
     z-index: 1;
