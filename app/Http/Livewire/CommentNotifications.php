@@ -8,15 +8,20 @@ class CommentNotifications extends Component
 {
     public $notifications;
     public $notificationCount;
-    public $notification_threshold = 3;
+    public $isLoading;
+    public $notification_threshold = 5;
 
     protected $listeners = ['getNotifications'];
 
     public function mount() {
         $this->notifications = collect([]);
+        $this->isLoading = true;
         $this->getNotificationCount();
     }
 
+    /**
+     *
+     */
     public function getNotificationCount()
     {
         $this->notificationCount = auth()->user()->unreadNotifications()->count();
@@ -26,11 +31,18 @@ class CommentNotifications extends Component
         }
     }
 
+    /**
+     *
+     */
     public function getNotifications()
     {
-        $this->notifications = auth()->user()->unreadNotifications()->latest();
+        $this->notifications = auth()->user()->unreadNotifications()->latest()->take($this->notification_threshold)->get();
+        $this->isLoading = false;
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('livewire.comment-notifications');
