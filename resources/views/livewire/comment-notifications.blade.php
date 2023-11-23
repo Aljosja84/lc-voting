@@ -15,25 +15,25 @@
             @foreach($notifications as $notification)
                 @switch($notification->type)
                     @case('App\Notifications\statusChanged')
-                    <li>
-                        <a href="{{ route('idea.show', $notification->data['idea_slug']) }}" class="flex hover:bg-gray-100 transition duration-150 ease-in px-5 py-2">
-                            <div class="status_update_notification_avatar {{ $notification->data['idea_status_avatar_color'] }}">&nbsp;</div>
-                            <div class="ml-4">
-                                <div class="line-clamp-4">
-                                    <span class="font-semibold text-blue">{{ $notification->data['comment_user'] }}</span>
-                                    has changed the status of your idea:
-                                    <span class="font-semibold">{{ $notification->data['idea_title'] }}</span> to
-                                    <span class="font-semibold {{ $notification->data['idea_status_textcolor'] }}">"{{ $notification->data['idea_status'] }}"</span> with the following comment:
-                                    <span>"{{ $notification->data['comment_body'] }}"</span>
+                        <li>
+                            <a wire:click.prevent="markAsRead({{ $notification->id }})" class="flex hover:bg-gray-100 transition duration-150 ease-in px-5 py-2">
+                                <div class="status_update_notification_avatar {{ $notification->data['idea_status_avatar_color'] }}">&nbsp;</div>
+                                <div class="ml-4">
+                                    <div class="line-clamp-4">
+                                        <span class="font-semibold text-blue">{{ $notification->data['comment_user'] }}</span>
+                                        has changed the status of your idea:
+                                        <span class="font-semibold">{{ $notification->data['idea_title'] }}</span> to
+                                        <span class="font-semibold {{ $notification->data['idea_status_textcolor'] }}">"{{ $notification->data['idea_status'] }}"</span> with the following comment:
+                                        <span>"{{ $notification->data['comment_body'] }}"</span>
+                                    </div>
+                                    <div class="text-xs text-gray-500 mt-2">{{ $notification->created_at->diffForHumans() }}</div>
                                 </div>
-                                <div class="text-xs text-gray-500 mt-2">{{ $notification->created_at->diffForHumans() }}</div>
-                            </div>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
                     @break
                     @case('App\Notifications\CommentAdded')
                         <li>
-                            <a href="{{ route('idea.show', $notification->data['idea_slug']) }}" class="flex hover:bg-gray-100 transition duration-150 ease-in px-5 py-2">
+                            <a wire:click.prevent="markAsRead({{ $notification->id }})" class="flex hover:bg-gray-100 transition duration-150 ease-in px-5 py-2">
                                 <img width="40px" height="40px" src="{{ $notification->data['user_avatar'] }}"
                                      alt="avatar" class="w-10 h-10 rounded-full">
                                 <div class="ml-4">
@@ -51,7 +51,7 @@
                 @endswitch
             @endforeach
         <li class="border-t border-gray-300 text-center">
-            <button class="block w-full text-blue font-semibold hover:bg-gray-100 transition duration-150 ease-in px-5 py-2">
+            <button wire:click="markAllAsRead" @click="isOpen=false" class="block w-full text-blue font-semibold hover:bg-gray-100 transition duration-150 ease-in px-5 py-2">
                 Mark all as read
             </button>
         </li>
