@@ -33,6 +33,10 @@ class CommentNotifications extends Component
         }
     }
 
+    /**
+     * @param $notificationId
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function markAsRead($notificationId)
     {
         // this auth is unnecessary but for consintency sake

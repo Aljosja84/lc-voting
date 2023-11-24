@@ -1,4 +1,4 @@
-<div x-data="{ isOpen: false }" class="relative">
+<div wire:poll="getNotificationCount" x-data="{ isOpen: false }" class="relative">
     <button @click="isOpen = !isOpen
                     if(isOpen) {
                         Livewire.emit('getNotifications')
@@ -16,7 +16,7 @@
                 @switch($notification->type)
                     @case('App\Notifications\statusChanged')
                         <li>
-                            <a wire:click.prevent="markAsRead({{ $notification->id }})" class="flex hover:bg-gray-100 transition duration-150 ease-in px-5 py-2">
+                            <a wire:click.prevent="markAsRead('{{ $notification->id }}')" href="#" class="flex hover:bg-gray-100 transition duration-150 ease-in px-5 py-2">
                                 <div class="status_update_notification_avatar {{ $notification->data['idea_status_avatar_color'] }}">&nbsp;</div>
                                 <div class="ml-4">
                                     <div class="line-clamp-4">
@@ -33,7 +33,7 @@
                     @break
                     @case('App\Notifications\CommentAdded')
                         <li>
-                            <a wire:click.prevent="markAsRead({{ $notification->id }})" class="flex hover:bg-gray-100 transition duration-150 ease-in px-5 py-2">
+                            <a wire:click="markAsRead('{{ $notification->id }}')" href="#" class="flex hover:bg-gray-100 transition duration-150 ease-in px-5 py-2">
                                 <img width="40px" height="40px" src="{{ $notification->data['user_avatar'] }}"
                                      alt="avatar" class="w-10 h-10 rounded-full">
                                 <div class="ml-4">
